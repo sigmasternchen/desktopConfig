@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if grep -i discharging /sys/class/power_supply/BAT0/status > /dev/null; then
+        status="↓"
+else
+        status="↑"
+fi
+
+echo $status

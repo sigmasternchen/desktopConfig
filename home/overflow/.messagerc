@@ -1,0 +1,11 @@
+#!/bin/zsh
+echo -n "\033[36m"
+echo "                              (-.(-.(-.-).-).-)"
+echo "                             You and which army?"
+echo
+
+echo -n "\033[33m"
+cal | awk '{ print "  " $0}'
+echo "\033[7A\033[39C\033[34m`date +%T`\n\033[36C\033[31m`whoami`\033[33m@\033[35m`hostname`\n\033[30C\033[32m`cat /proc/loadavg`\n\033[30C\033[0m\033[34m\u26A3  & \u26A4   Problem, bitch?\033[0m\n\n\n\n"
+#fortune -s
+echo " "

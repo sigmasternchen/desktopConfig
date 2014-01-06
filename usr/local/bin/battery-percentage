@@ -1,0 +1,12 @@
+#!/bin/bash
+
+pushd /sys/class/power_supply/BAT0 > /dev/null
+
+now=`cat charge_now`
+full=`cat charge_full`
+
+percentage=`python -c "print (int($now.0/$full*100 + 0.5))"`
+
+echo $percentage
+
+popd > /dev/null

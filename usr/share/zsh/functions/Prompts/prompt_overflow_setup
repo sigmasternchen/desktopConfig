@@ -1,0 +1,37 @@
+# Very overflow prompt
+prompt_overflow_setup () {
+
+	PROMPT="%K{blue}%F{red}%(?.. %B%U%?%u%b%K{blue})%F{white} %B%T%b%K{blue} %F{blue}%(!.%K{magenta}.%K{cyan})⮀ %F{black}%~ %k%(!.%F{magenta}.%F{cyan})⮀%f "
+	RPROMPT="%(4V.%F{red}.%(5V.%F{yellow}.%F{green}))%1v%2v%%%f %(6V.%F{red}.%(7V.%F{yellow}.%F{green}))%3v°C%f"
+
+	prompt_opts=( cr percent )
+
+}
+
+function precmd () {
+
+	val=`battery-percentage`	
+	batstatus=`battery-status`
+	temp=`cpu-temp`
+
+	psvar=("$batstatus" "$val" "$temp")
+	
+	if [ $val -le 20 ]; then
+		# red
+		psvar[4]=1
+	elif [ $val -le 30 ]; then
+		# yellow
+		psvar[5]=1
+	fi
+
+	if [ $temp -ge 90 ]; then
+		# red
+		psvar[6]=1
+	elif [ $temp -ge 80 ]; then
+		# yellow
+		psvar[7]=1
+	fi
+
+}
+
+prompt_overflow_setup "$@"

@@ -41,8 +41,44 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 #PROMPT="%F{red}%(?..%U%?%b%u)%F{cyan}%~ %B%#%b%f "
 #RPROMPT="%F{magenta}[%l]%f"
 
+PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin"
+
 autoload promptinit
 promptinit
 prompt overflow 
+
+alias please=sudo
+alias plz=gksu
+alias edit=vim
+alias sniffer=wireshark
+alias whereami=pwd
+alias whatami="ip addr | grep inet"
+alias whatisthis=hostname
+alias whatsthetime="date +%T"
+alias mrpropper=clear
+
+function proxy(){
+	echo -n "username:"
+	read username
+	echo -n "password:"
+	read -s password
+	export http_proxy="https://$username:$password@192.168.195.101:8080/"
+	export https_proxy=$http_proxy
+	export ftp_proxy=$http_proxy
+	export rsync_proxy=$http_proxy
+	export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+	echo -e "\nProxy environment variable set."
+}
+function proxyoff(){
+	unset HTTP_PROXY
+	unset http_proxy
+	unset HTTPS_PROXY
+	unset https_proxy
+	unset FTP_PROXY
+	unset ftp_proxy
+	unset RSYNC_PROXY
+	unset rsync_proxy
+	echo -e "\nProxy environment variable removed."
+} 
 
 ./.messagerc

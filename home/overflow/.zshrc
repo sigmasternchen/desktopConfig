@@ -81,4 +81,15 @@ function proxyoff(){
 	echo -e "\nProxy environment variable removed."
 } 
 
-./.messagerc
+#./.messagerc
+
+figlet -t -f small -c $(greetings) | lolcat -s 80
+echo "You are on $(hostname)." | lolcat -F 0.5
+
+echo
+if test $(todo -n) = 0; then
+	echo "No tasks to do. \o/"
+else
+	todo
+fi
+echo
